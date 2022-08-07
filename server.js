@@ -12,6 +12,7 @@ require('dotenv').config()
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
+
 // SEQUELIZE CONNECTION
 // const sequelize = new Sequelize(process.env.PG_URI)
 
@@ -29,6 +30,11 @@ app.get('/', (req, res) => {
         message: 'Welcome to the Tour API'
     })
 })
+
+// CONTROLLERS
+const bandsController = require('./controllers/bands_controller')
+// bands controller is used when going to any URL starting with /bands
+app.use('/bands', bandsController)
 
 // LISTEN
 app.listen(process.env.PORT, () => {
